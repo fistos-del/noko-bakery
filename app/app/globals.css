@@ -1,0 +1,160 @@
+:root {
+  /* ─────────────────────────────────────
+     HYAMATLA FERTITRACK — DARK THEME
+     Brand colors adapted for dark UI
+     ───────────────────────────────────── */
+
+  /* Backgrounds — deep forest tones */
+  --bg: #0F1611;                    /* Near-black with forest tint */
+  --surface: #182219;               /* Card background */
+  --surface-2: #21301F;             /* Nested cards, hover */
+  --surface-3: #2A3B27;             /* Deep hover */
+
+  /* Borders */
+  --border: #344A32;                /* Forest divider */
+  --border-dark: #455E42;
+
+  /* Text */
+  --text: #F0EDE4;                  /* Pale sand (light on dark) */
+  --text-muted: #9DAF9A;            /* Muted forest */
+  --text-soft: #6E8069;             /* Soft muted */
+
+  /* Brand — official Hyamatla colors */
+  --primary: #8CC63F;               /* Vibrant leaf green (pops on dark) */
+  --primary-dark: #6FA82A;
+  --primary-light: #A5D65C;
+  --primary-soft: #2E4A2E;          /* Soft forest for backgrounds */
+
+  --secondary: #C07F3E;             /* Earth orange */
+  --secondary-dark: #A3662C;
+  --secondary-light: #D49B63;
+
+  --forest: #2E4A2E;                /* Deep forest green (from brand) */
+
+  /* Status */
+  --danger: #EF4444;
+  --warning: #F59E0B;
+  --success: #10B981;
+  --info: #3B82F6;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; text-decoration: none; }
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-pulse-slow { animation: pulse 2s infinite; }
+.animate-slide-in { animation: slideIn 0.3s ease-out; }
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--surface); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 5px; }
+::-webkit-scrollbar-thumb:hover { background: var(--primary-dark); }
+
+/* ─────────────────────────────────────
+   RESPONSIVE UTILITIES
+   ───────────────────────────────────── */
+
+@media (max-width: 600px) {
+  html { font-size: 15px; }
+}
+
+body { overflow-x: hidden; }
+
+.table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin: 0 -20px;
+  padding: 0 20px;
+}
+
+@media (max-width: 900px) {
+  .table-wrap table {
+    min-width: 720px;
+  }
+}
+
+.grid-stack-mobile {
+  display: grid;
+}
+
+@media (max-width: 900px) {
+  .grid-stack-mobile {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+}
+
+@media (max-width: 900px) {
+  .summary-cards-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px !important;
+  }
+}
+
+@media (max-width: 500px) {
+  .summary-cards-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media (max-width: 900px) {
+  .customers-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media (max-width: 900px) {
+  main {
+    padding: 16px !important;
+  }
+}
+
+/* ─────────────────────────────────────
+   CONSISTENT INTERACTIONS
+   ───────────────────────────────────── */
+
+button {
+  transition: transform 0.15s ease, background-color 0.2s ease, opacity 0.2s ease;
+}
+
+button:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--primary-light);
+  outline-offset: 2px;
+  border-radius: 4px;
+}

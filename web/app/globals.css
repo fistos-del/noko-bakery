@@ -1,0 +1,186 @@
+:root {
+  /* ─────────────────────────────────────
+     HYAMATLA ORGANICS — OFFICIAL PALETTE
+     ───────────────────────────────────── */
+
+  /* Backgrounds */
+  --bg: #FFFFFF;
+  --bg-alt: #F7F7F5;
+  --surface: #FFFFFF;
+  --surface-2: #F1F4EC;
+  --surface-3: #E5EBD9;
+
+  /* Borders */
+  --border: #E0E3D9;
+  --border-dark: #C9CFBF;
+
+  /* Text */
+  --text: #1F2420;
+  --text-muted: #5A6257;
+  --text-soft: #8B9188;
+
+  /* Brand — official colors */
+  --primary: #8CC63F;           /* Vibrant leaf green */
+  --primary-dark: #6FA82A;      /* Darker green for text contrast */
+  --primary-light: #A5D65C;     /* Lighter green */
+  --primary-soft: #E5F0D4;      /* Pale green */
+
+  --secondary: #C07F3E;         /* Earth orange */
+  --secondary-dark: #A3662C;
+  --secondary-light: #D49B63;
+  --secondary-soft: #F2E6D6;
+
+  --forest: #2E4A2E;            /* Deep forest green */
+  --forest-light: #4A6B4A;
+  --forest-soft: #DCE5DC;
+
+  /* Reserved accents (used sparingly) */
+  --accent: #6B4E9E;            /* Hyacinth purple — accents only */
+  --water: #3D7A8F;             /* Water reference */
+
+  /* Status */
+  --danger: #C0392B;
+  --warning: #E67E22;
+  --success: #27AE60;
+  --info: #2980B9;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(31, 36, 32, 0.06);
+  --shadow-md: 0 4px 12px rgba(31, 36, 32, 0.08);
+  --shadow-lg: 0 12px 32px rgba(31, 36, 32, 0.10);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  line-height: 1.5;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ─────────────────────────────────────
+   ANIMATIONS
+   ───────────────────────────────────── */
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(111, 168, 42, 0.4); }
+  50% { box-shadow: 0 0 0 16px rgba(111, 168, 42, 0); }
+}
+
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(2deg); }
+}
+
+@keyframes water-ripple {
+  0% { transform: scale(1); opacity: 0.6; }
+  100% { transform: scale(2.5); opacity: 0; }
+}
+
+@keyframes subtle-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+::selection {
+  background: var(--primary);
+  color: white;
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-alt);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-dark);
+  border-radius: 6px;
+  border: 3px solid var(--bg-alt);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
+}
+
+/* ─────────────────────────────────────
+   RESPONSIVE UTILITIES
+   ───────────────────────────────────── */
+
+.only-mobile { display: none; }
+.only-desktop { display: block; }
+
+@media (max-width: 900px) {
+  .only-mobile { display: block; }
+  .only-desktop { display: none; }
+  section {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+}
+
+@media (max-width: 600px) {
+  html { font-size: 15px; }
+}
+
+img, canvas, video {
+  max-width: 100%;
+  height: auto;
+}
+
+.responsive-table {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+@media (max-width: 900px) {
+  .responsive-table table {
+    min-width: 640px;
+  }
+}
+
+.grid-stack-mobile {
+  display: grid;
+}
+
+@media (max-width: 900px) {
+  .grid-stack-mobile {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+  }
+  section[id] {
+    padding-top: 80px !important;
+    padding-bottom: 80px !important;
+  }
+}
+
+@media (max-width: 600px) {
+  h1, h2 {
+    letter-spacing: -0.5px !important;
+  }
+}

@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <defs>
+    <linearGradient id="soil" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3D2A1F"/>
+      <stop offset="100%" stop-color="#2A1D14"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Dark soil background with squircle -->
+  <rect x="0" y="0" width="32" height="32" rx="7" fill="url(#soil)"/>
+
+  <!-- Subtle top-left bevel -->
+  <path
+    d="M7 3 Q3 3 3 7 L3 25 Q3 29 7 29 L25 29 Q29 29 29 25 L29 7 Q29 3 25 3 Z"
+    fill="none"
+    stroke="rgba(255,255,255,0.08)"
+    stroke-width="1"
+  />
+
+  <!-- Sprout -->
+  <g stroke="#8CC63F" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Stem -->
+    <path d="M16 26 L16 15"/>
+
+    <!-- Left leaf -->
+    <path d="M16 19 Q11 18 10 13 Q15 13 16 19"/>
+
+    <!-- Right leaf -->
+    <path d="M16 17 Q21 15 22 9 Q17 10 16 17"/>
+  </g>
+
+  <!-- Tiny leaf fill hint -->
+  <path d="M16 19 Q12 18 11 14 Q15 14 16 19 Z" fill="#8CC63F" opacity="0.25"/>
+  <path d="M16 17 Q20 15 21 10 Q17 11 16 17 Z" fill="#8CC63F" opacity="0.25"/>
+</svg>

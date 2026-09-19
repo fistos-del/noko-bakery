@@ -1,0 +1,17 @@
+{
+  "name": "fertilizer-prototype",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+            "dev": "concurrently \"npm run dev:web\" \"npm run dev:app\" \"npm run dev:jorud\"",
+    "dev:web": "cd web && npm run dev",
+    "dev:app": "cd app && npm run dev",
+    "dev:jorud": "cd web-jorud && npm run dev",
+    "db:push": "cd app && npx prisma db push",
+    "db:seed": "cd app && npx tsx prisma/seed.ts",
+    "db:studio": "cd app && npx prisma studio"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0"
+  }
+}

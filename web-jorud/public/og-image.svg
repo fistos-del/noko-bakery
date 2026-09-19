@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F4F4F2"/>
+      <stop offset="100%" stop-color="#E5E5E2"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#E85A24"/>
+      <stop offset="100%" stop-color="#1B4965"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- Diagonal stripes pattern -->
+  <g opacity="0.06">
+    <line x1="0" y1="0" x2="1200" y2="1200" stroke="#E85A24" stroke-width="2"/>
+    <line x1="100" y1="0" x2="1300" y2="1200" stroke="#E85A24" stroke-width="2"/>
+    <line x1="200" y1="0" x2="1400" y2="1200" stroke="#E85A24" stroke-width="2"/>
+    <line x1="300" y1="0" x2="1500" y2="1200" stroke="#E85A24" stroke-width="2"/>
+  </g>
+
+  <!-- Orange top bar -->
+  <rect x="0" y="0" width="1200" height="8" fill="#E85A24"/>
+
+  <!-- Logo (top left) -->
+  <g transform="translate(80, 70)">
+    <circle cx="30" cy="30" r="30" fill="#E85A24"/>
+    <circle cx="30" cy="30" r="28" fill="none" stroke="#1B4965" stroke-width="1.5"/>
+    <g fill="white">
+      <path d="M30 12 L28.4 18 L31.6 18 Z"/>
+      <path d="M22 14 L21 19 L24.5 17.5 Z"/>
+      <path d="M38 14 L35.5 17.5 L39 19 Z"/>
+      <path d="M14 20 L15 24 L18 21.5 Z"/>
+      <path d="M46 20 L42 21.5 L45 24 Z"/>
+      <ellipse cx="30" cy="30" rx="8" ry="9"/>
+      <circle cx="27.5" cy="27" r="1.3" fill="#E85A24"/>
+      <circle cx="32.5" cy="27" r="1.3" fill="#E85A24"/>
+      <ellipse cx="30" cy="31" rx="1.5" ry="1" fill="#E85A24"/>
+    </g>
+  </g>
+
+  <text x="160" y="110" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="34" font-weight="900" fill="#E85A24" letter-spacing="-0.5">
+    JORUD
+  </text>
+  <text x="160" y="135" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="800" fill="#1B4965" letter-spacing="4">
+    SOLUTIONS cc
+  </text>
+
+  <!-- Tagline -->
+  <text x="80" y="290" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="15" font-weight="800" fill="#E85A24" letter-spacing="4">
+    CIVIL · HORTICULTURE · STEEL · LOGISTICS
+  </text>
+
+  <!-- Headline -->
+  <text x="80" y="400" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="76" font-weight="900" fill="#1A1D20" letter-spacing="-2">
+    Building South Africa&apos;s
+  </text>
+  <text x="80" y="480" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="76" font-weight="900" fill="url(#accent)" letter-spacing="-2">
+    infrastructure since 1999.
+  </text>
+
+  <!-- Supporting line -->
+  <text x="80" y="540" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="18" fill="#5C6367">
+    100% Black Owned · Level 3 B-BBEE · CIDB &amp; NHBRC Registered
+  </text>
+
+  <!-- Bottom badges -->
+  <g transform="translate(700, 545)">
+    <rect x="0" y="0" width="140" height="38" rx="8" fill="#FFFFFF" stroke="#E85A24" stroke-width="1.5"/>
+    <text x="70" y="24" font-family="-apple-system, sans-serif" font-size="12" font-weight="900" fill="#E85A24" text-anchor="middle" letter-spacing="0.5">
+      CIDB 221273
+    </text>
+
+    <rect x="150" y="0" width="160" height="38" rx="8" fill="#FFFFFF" stroke="#1B4965" stroke-width="1.5"/>
+    <text x="230" y="24" font-family="-apple-system, sans-serif" font-size="12" font-weight="900" fill="#1B4965" text-anchor="middle" letter-spacing="0.5">
+      NHBRC 1-37979997
+    </text>
+
+    <rect x="320" y="0" width="140" height="38" rx="8" fill="#FFFFFF" stroke="#4E7A1F" stroke-width="1.5"/>
+    <text x="390" y="24" font-family="-apple-system, sans-serif" font-size="12" font-weight="900" fill="#4E7A1F" text-anchor="middle" letter-spacing="0.5">
+      B-BBEE L3
+    </text>
+  </g>
+</svg>
