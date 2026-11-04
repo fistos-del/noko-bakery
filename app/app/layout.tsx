@@ -1,29 +1,40 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
-import Sidebar from "@/components/Sidebar";
-import RouteProgress from "@/components/RouteProgress";
+import { CartProvider } from "@/components/CartContext";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import CartDrawer from "@/components/CartDrawer";
 
 export const metadata: Metadata = {
-  title: {
-    default: "Hyamatla FertiTrack — Stock & Order Management",
-    template: "%s | Hyamatla FertiTrack",
-  },
+  title: "Noko — Freshly Baked, Delivered",
   description:
-    "Internal operations dashboard for Hyamatla Organics — track Hya Power fertilizer stock, orders, deliveries, and customers.",
+    "Artisan breads, pastries, and curated boxes delivered fresh to Pretoria East.",
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
-            <body>
-        <RouteProgress />
-        <div style={{ display: "flex", minHeight: "100vh" }}>
-          <Sidebar />
-          <main style={{ flex: 1, padding: 24, overflow: "auto" }}>
-            {children}
-          </main>
-        </div>
+      {/* Google Fonts for the cursive hero text */}
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap"
+          rel="stylesheet"
+        />
+      </head>
+      <body>
+        <CartProvider>
+          <Navbar />
+          <main style={{ minHeight: "60vh", paddingTop: 60 }}>{children}</main>
+          <Footer />
+          <CartDrawer />
+        </CartProvider>
       </body>
     </html>
   );

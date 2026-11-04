@@ -3,10 +3,11 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-            "dev": "concurrently \"npm run dev:web\" \"npm run dev:app\" \"npm run dev:jorud\"",
+    "dev": "concurrently \"npm run dev:web\" \"npm run dev:app\" \"npm run dev:jorud\" \"npm run dev:bakery\"",
     "dev:web": "cd web && npm run dev",
     "dev:app": "cd app && npm run dev",
     "dev:jorud": "cd web-jorud && npm run dev",
+    "dev:bakery": "cd bakery-app && npm run dev",
     "db:push": "cd app && npx prisma db push",
     "db:seed": "cd app && npx tsx prisma/seed.ts",
     "db:studio": "cd app && npx prisma studio"
