@@ -7,3 +7,5 @@ node_modules/
 *.db-journal
 optometry-app/
 other-apps/
+.vercel
+.env*
