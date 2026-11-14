@@ -64,3 +64,29 @@ h1, h2, h3, h4 {
 ::-webkit-scrollbar { width: 8px; }
 ::-webkit-scrollbar-track { background: var(--bg); }
 ::-webkit-scrollbar-thumb { background: #CCC; border-radius: 4px; }
+
+:root {
+  /* ───── ORIGINAL deep plum (preserved for easy revert) ───── */
+  --plum-deep-bg:   #4a1e3f;
+  --plum-deep-dark: #3a1530;
+  --plum-deep-soft: #f0c8dc;
+  --plum-deep-card: #fce8f0;
+  --plum-deep-glow: rgba(232, 168, 200, 0.4);
+  --plum-deep-text: #2a0e24;
+
+  /* ───── LIGHT plum (current selection) ───── */
+  --plum-light-bg:   #b190a0;   /* plum daub — body background */
+  --plum-light-dark: #e6e0f8;   /* plum snow — header bar */
+  --plum-light-soft: #e6e0f8;   /* soft text on plum */
+  --plum-light-card: #f5effa;   /* very pale card background */
+  --plum-light-glow: rgba(177, 144, 160, 0.4);
+  --plum-light-text: #2a1a26;
+
+  /* ───── ACTIVE palette (change these 6 lines to switch) ───── */
+  --plum:        var(--plum-light-bg);
+  --plum-dark:   var(--plum-light-dark);
+  --pink-soft:   var(--plum-light-soft);
+  --pink-card:   var(--plum-light-card);
+  --pink-glow:   var(--plum-light-glow);
+  --pink-text:   var(--plum-light-text);
+}

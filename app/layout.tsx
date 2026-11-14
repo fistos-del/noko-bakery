@@ -7,8 +7,8 @@ import Footer from "@/components/Footer";
 import CartDrawer from "@/components/CartDrawer";
 
 export const metadata: Metadata = {
-  title: "Noko — Freshly Baked, Delivered",
-  description: "Artisan breads, pastries, and curated boxes delivered fresh to Pretoria East.",
+  title: "Noko Bakery",
+  description: "Noko Bakery — Rooted in culture and living.",
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
@@ -17,8 +17,15 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       {/* ADD THE GOOGLE FONT LINK HERE */}
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap"
+          rel="stylesheet"
+        />
       </head>
       <body>
         <CartProvider>
