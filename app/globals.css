@@ -90,3 +90,10 @@ h1, h2, h3, h4 {
   --pink-glow:   var(--plum-light-glow);
   --pink-text:   var(--plum-light-text);
 }
+/* ───── NEW BRAND PALETTE ───── */
+:root {
+  --brand-bg: #803655;
+  --brand-muted: #D5B1B8;
+  --brand-plum: #641C40;
+  --brand-light: #F4D8E1;
+}

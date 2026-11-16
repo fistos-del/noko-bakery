@@ -182,7 +182,7 @@ export default function CheckoutPage() {
         <p style={{ fontSize: 14, color: "var(--text-muted)" }}>
           {type === "DELIVERY"
             ? "Delivered to your door across Pretoria East"
-            : "Collect outside Mooikloof Glen Estate, 8–10am"}
+            : "Collect outside collection point between 8-10am"}
         </p>
       </div>
 
@@ -313,7 +313,7 @@ export default function CheckoutPage() {
                   Collection · Free
                 </div>
                 <div style={{ fontSize: 12, color: "var(--text-muted)" }}>
-                  Mooikloof Glen Estate, 8–10am
+                  collection point between 8-10am
                 </div>
               </button>
             </div>

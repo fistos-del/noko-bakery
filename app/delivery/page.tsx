@@ -1,68 +1,45 @@
-"use client";
-
-import Link from "next/link";
-
 export default function DeliveryPage() {
   return (
-    <div style={{ maxWidth: 900, margin: "0 auto", padding: "120px 24px 80px" }}>
-      <div style={{ marginBottom: 60 }}>
-        <div style={{ fontSize: 11, color: "var(--primary)", letterSpacing: 3, textTransform: "uppercase", fontWeight: 800, marginBottom: 16 }}>
-          Getting Your Order
-        </div>
-        <h1 style={{ fontSize: "clamp(36px, 6vw, 64px)", fontWeight: 900, letterSpacing: -2, lineHeight: 1.05, marginBottom: 20, color: "var(--text)" }}>
+    <div style={{ background: "var(--brand-muted)", minHeight: "100vh", paddingTop: 120, paddingBottom: 80 }}>
+      <div style={{ maxWidth: 800, margin: "0 auto", padding: "0 24px" }}>
+
+        <h1 style={{ fontSize: "clamp(36px, 6vw, 64px)", fontWeight: 900, marginBottom: 24, color: "var(--brand-plum)" }}>
           Delivery &amp; Collection
         </h1>
-        <p style={{ fontSize: 16, color: "var(--text-muted)", lineHeight: 1.7, maxWidth: 600 }}>
-          Two ways to get your fresh bread. Choose what works best for you.
+
+        <p style={{ fontSize: 18, color: "var(--brand-plum)", lineHeight: 1.8, marginBottom: 40, opacity: 0.9 }}>
+          Whether you&rsquo;d prefer your goodies brought straight to your door or would like to pop by and collect them, we&rsquo;ve made getting your favourites as easy as possible. Choose the option that suits you best and leave the rest to us.
+        </p>
+
+        <div style={{ display: "grid", gap: 32 }}>
+          <div style={{ background: "white", padding: 40, borderRadius: 16, boxShadow: "0 10px 30px rgba(100,28,64,0.05)" }}>
+            <h2 style={{ fontSize: 24, fontWeight: 800, color: "var(--brand-plum)", marginBottom: 16 }}>Doorstep Delivery</h2>
+            <p style={{ fontSize: 16, color: "var(--brand-plum)", lineHeight: 1.7, marginBottom: 16, opacity: 0.9 }}>
+              We offer local delivery across Pretoria East. Simply select delivery when placing your order, and we&rsquo;ll arrange to get your goods to you.
+            </p>
+            <p style={{ fontSize: 16, color: "var(--brand-plum)", fontWeight: 800, marginBottom: 16 }}>Delivery days are Monday - Saturday</p>
+          </div>
+
+          <div style={{ background: "white", padding: 40, borderRadius: 16, boxShadow: "0 10px 30px rgba(100,28,64,0.05)" }}>
+            <h2 style={{ fontSize: 24, fontWeight: 800, color: "var(--brand-plum)", marginBottom: 16 }}>Collection</h2>
+            <p style={{ fontSize: 16, color: "var(--brand-plum)", lineHeight: 1.7, marginBottom: 16, opacity: 0.9 }}>
+              Prefer to collect? You&rsquo;re more than welcome to! We offer collections from our designated collection point during our allocated collection window, making it easy to pick up your freshly baked order at a time arranged with us.
+            </p>
+            <p style={{ fontSize: 16, color: "var(--brand-plum)", lineHeight: 1.7, marginBottom: 16, opacity: 0.9 }}>
+              Collection details and the exact location will be shared with you once your order has been confirmed. No delivery fee applies to collection.
+            </p>
+            <ul style={{ listStyle: "none", padding: 0, fontSize: 15, color: "var(--brand-plum)", fontWeight: 700, display: "flex", flexDirection: "column", gap: 8 }}>
+              <li>📍 Location: Mooikloof, Garstfontein rd</li>
+              <li>📅 Days: Monday - Saturday</li>
+              <li>🕒 Hours: 9am - 11am</li>
+            </ul>
+          </div>
+        </div>
+
+        <p style={{ fontSize: 14, color: "var(--brand-plum)", textAlign: "center", marginTop: 40, opacity: 0.7, fontStyle: "italic" }}>
+          Your privacy matters. Our exact collection address is not publicly listed on our website. Details are shared privately with confirmed customers to ensure your collection experience is smooth and convenient.
         </p>
       </div>
-
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 24, marginBottom: 60 }} className="grid-stack-mobile">
-        <div style={{ padding: 32, background: "var(--surface)", border: "2px solid var(--border)" }}>
-          <div style={{ fontSize: 56, marginBottom: 20 }}>🚚</div>
-          <h2 style={{ fontSize: 28, fontWeight: 900, marginBottom: 16, color: "var(--text)" }}>Delivery to your door</h2>
-          <p style={{ fontSize: 14, color: "var(--text-muted)", lineHeight: 1.7, marginBottom: 24 }}>
-            We deliver fresh to your door across Pretoria East — within a 15–20km radius of Mooikloof Glen.
-          </p>
-          <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-            <InfoRow label="Flat delivery fee" value="R 25" />
-            <InfoRow label="Delivery radius" value="15–20 km" />
-            <InfoRow label="Delivery days" value="Tue · Thu · Sat" />
-            <InfoRow label="Delivery window" value="9am – 1pm" />
-          </div>
-        </div>
-
-        <div style={{ padding: 32, background: "var(--surface)", border: "2px solid var(--border)" }}>
-          <div style={{ fontSize: 56, marginBottom: 20 }}>📍</div>
-          <h2 style={{ fontSize: 28, fontWeight: 900, marginBottom: 16, color: "var(--text)" }}>Collection from the estate</h2>
-          <p style={{ fontSize: 14, color: "var(--text-muted)", lineHeight: 1.7, marginBottom: 24 }}>
-            Collect your order from the gate at Mooikloof Glen Country Estate. Free of charge.
-          </p>
-          <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-            <InfoRow label="Collection fee" value="Free" />
-            <InfoRow label="Location" value="Mooikloof Glen gate" />
-            <InfoRow label="Days" value="Tue · Thu · Sat" />
-            <InfoRow label="Hours" value="8am – 10am" />
-          </div>
-        </div>
-      </div>
-
-      <div style={{ padding: 40, background: "var(--bg-alt)", border: "2px solid var(--border)", textAlign: "center" }}>
-        <h2 style={{ fontSize: 28, fontWeight: 900, marginBottom: 12, color: "var(--text)" }}>Ready to order?</h2>
-        <p style={{ fontSize: 14, color: "var(--text-muted)", marginBottom: 24 }}>Choose your delivery or collection at checkout.</p>
-        <Link href="/shop" className="btn-orange" style={{ display: "inline-block" }}>Shop Now →</Link>
-      </div>
-
-      <style>{`@media (max-width: 900px) { .grid-stack-mobile { grid-template-columns: 1fr !important; } }`}</style>
-    </div>
-  );
-}
-
-function InfoRow({ label, value }: { label: string; value: string }) {
-  return (
-    <div style={{ display: "flex", justifyContent: "space-between", fontSize: 13, alignItems: "center", borderBottom: "1px solid var(--border)", paddingBottom: 8 }}>
-      <span style={{ color: "var(--text-muted)" }}>{label}</span>
-      <span style={{ fontWeight: 800, color: "var(--text)" }}>{value}</span>
     </div>
   );
 }

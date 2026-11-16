@@ -293,7 +293,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
           >
             🚚 R25 flat delivery across Pretoria East
             <br />
-            📍 Or collect at Mooikloof Glen Estate, 8–10am
+            📍 Or pick up at collection point between 8-10am
           </div>
         </div>
       </div>
