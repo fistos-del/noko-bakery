@@ -28,7 +28,7 @@ export default function AccountPage() {
         throw new Error(data.error || "Login failed");
       }
 
-      router.push("/account");
+      router.push("/admin");
       router.refresh();
     } catch (err) {
       setError(err instanceof Error ? err.message : "Something went wrong");
