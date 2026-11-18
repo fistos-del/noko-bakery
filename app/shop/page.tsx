@@ -26,7 +26,7 @@ export default async function ShopPage() {
           </p>
         </div>
 
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(320px, 1fr))", gap: 24 }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(min(100%, 320px), 1fr))", gap: 24 }}>
           {products.map((product) => {
             // Fallback to a simple card if ProductCard is missing
             return (

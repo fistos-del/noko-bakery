@@ -52,7 +52,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
       style={{
         maxWidth: 1200,
         margin: "0 auto",
-        padding: "100px 24px 80px",
+        padding: "clamp(80px, 10vw, 100px) 24px 80px",
       }}
     >
       <div
@@ -89,7 +89,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              fontSize: 200,
+              fontSize: "clamp(80px, 20vw, 200px)",
               position: "relative",
               overflow: "hidden",
             }}

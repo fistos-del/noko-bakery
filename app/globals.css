@@ -97,3 +97,23 @@ h1, h2, h3, h4 {
   --brand-plum: #641C40;
   --brand-light: #F4D8E1;
 }
+
+/* ───── Mobile Responsive Fixes ───── */
+@media (max-width: 768px) {
+  /* Collapse any 2-column grid on mobile */
+  .grid-stack-mobile {
+    grid-template-columns: 1fr !important;
+    gap: 32px !important;
+  }
+
+  /* Prevent horizontal overflow sitewide */
+  body {
+    overflow-x: hidden;
+  }
+
+  /* Ensure images don't blow out the layout */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}
