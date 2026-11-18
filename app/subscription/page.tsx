@@ -34,7 +34,7 @@ export default function SubscriptionPage() {
             <div key={i} style={{ padding: 40, background: "var(--brand-plum)", borderRadius: 16, display: "flex", flexDirection: "column", textAlign: "center" }}>
               <div style={{ fontSize: 60, marginBottom: 20 }}>{["🥖", "🥐", "🥨"][i]}</div>
               <h3 style={{ fontSize: 24, fontWeight: 900, color: "var(--brand-muted)", marginBottom: 16 }}>{name}</h3>
-              <Link href="/account" style={{ padding: 16, background: "var(--brand-muted)", color: "var(--brand-plum)", textDecoration: "none", borderRadius: 8, fontSize: 14, fontWeight: 900, textTransform: "uppercase", marginTop: "auto" }}>
+              <Link href={`/subscribe/${["standard","premium","family"][i]}`} style={{ padding: 16, background: "var(--brand-muted)", color: "var(--brand-plum)", textDecoration: "none", borderRadius: 8, fontSize: 14, fontWeight: 900, textTransform: "uppercase", marginTop: "auto" }}>
                 Subscribe
               </Link>
             </div>

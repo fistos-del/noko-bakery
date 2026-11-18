@@ -21,6 +21,7 @@ export default function CheckoutPage() {
   const [type, setType] = useState<"DELIVERY" | "COLLECTION">("DELIVERY");
   const [address, setAddress] = useState("");
   const [notes, setNotes] = useState("");
+  const [deliveryDate, setDeliveryDate] = useState("");
   const [paymentMethod, setPaymentMethod] = useState<"CARD" | "EFT" | "QR">(
     "CARD",
   );
@@ -58,6 +59,10 @@ export default function CheckoutPage() {
       return;
     }
 
+    if (type === "DELIVERY" && !deliveryDate) {
+      setError("Please pick a delivery date");
+      return;
+    }
     if (type === "DELIVERY" && !address) {
       setError("Delivery address is required");
       return;
@@ -81,6 +86,7 @@ export default function CheckoutPage() {
           address: type === "DELIVERY" ? address : undefined,
           notes,
           paymentMethod,
+          deliveryDate: type === "DELIVERY" ? new Date(deliveryDate).toISOString() : null,
           discountCode: discountApplied > 0 ? discountCode : undefined,
         }),
       });
@@ -326,14 +332,25 @@ export default function CheckoutPage() {
                     onChange={(e) => setAddress(e.target.value)}
                     placeholder="Street, suburb, postal code"
                     rows={2}
-                    style={{
-                      ...inputStyle,
-                      resize: "vertical",
-                      fontFamily: "inherit",
-                    }}
+                    style={{ ...inputStyle, resize: "vertical", fontFamily: "inherit" }}
                     required
                   />
                 </Field>
+                <div style={{ marginTop: 16 }}>
+                  <Field label="Preferred Delivery Date" required>
+                    <input
+                      type="date"
+                      value={deliveryDate}
+                      onChange={(e) => setDeliveryDate(e.target.value)}
+                      min={new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString().split("T")[0]}
+                      required
+                      style={inputStyle}
+                    />
+                  </Field>
+                  <p style={{ fontSize: 12, color: "var(--text-muted)", marginTop: 6 }}>
+                    We need at least 24 hours notice for fresh baking.
+                  </p>
+                </div>
               </div>
             )}
 
