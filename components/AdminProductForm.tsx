@@ -20,6 +20,7 @@ type ProductData = {
 export default function AdminProductForm({ initialData }: { initialData?: ProductData }) {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
+  const [deleting, setDeleting] = useState(false);
   const [error, setError] = useState("");
 
   const [form, setForm] = useState<ProductData>(
@@ -100,13 +101,47 @@ export default function AdminProductForm({ initialData }: { initialData?: Produc
     }
   };
 
+  const handleDelete = async () => {
+    if (!initialData?.id) return;
+
+    const confirmed = window.confirm(
+      `Delete "${form.name}" permanently?\n\nIf this product has already been ordered, it can't be deleted — turn off "In Stock" instead to hide it from the shop.`
+    );
+    if (!confirmed) return;
+
+    setDeleting(true);
+    setError("");
+
+    try {
+      const res = await fetch(`/api/admin/products/${initialData.id}`, {
+        method: "DELETE",
+      });
+
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        if (res.status === 500 && data.error?.includes("orders")) {
+          throw new Error(
+            "This product has been ordered before and can't be deleted. Turn off \"In Stock\" to hide it from the shop instead."
+          );
+        }
+        throw new Error(data.error || "Failed to delete product");
+      }
+
+      router.push("/admin/products");
+      router.refresh();
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Failed to delete");
+      setDeleting(false);
+    }
+  };
+
   const labelStyle = { display: "block", fontWeight: 800, marginBottom: 8, fontSize: 12, textTransform: "uppercase" as const, letterSpacing: 1, color: "var(--brand-plum)" };
   const inputStyle = { width: "100%", padding: 12, border: "1px solid rgba(100,28,64,0.2)", borderRadius: 8, fontSize: 14 };
 
   return (
     <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: 20, maxWidth: 600 }}>
       {error && (
-        <div style={{ padding: 12, background: "#fee", color: "#900", borderRadius: 8, fontSize: 14 }}>
+        <div style={{ padding: 12, background: "#fee", color: "#900", borderRadius: 8, fontSize: 14, lineHeight: 1.5 }}>
           {error}
         </div>
       )}
@@ -163,13 +198,26 @@ export default function AdminProductForm({ initialData }: { initialData?: Produc
         </label>
       </div>
 
-      <button
-        type="submit"
-        disabled={loading}
-        style={{ padding: 16, background: "var(--brand-plum)", color: "white", border: "none", borderRadius: 8, fontSize: 14, fontWeight: 900, textTransform: "uppercase", letterSpacing: 1, cursor: loading ? "not-allowed" : "pointer", opacity: loading ? 0.7 : 1, marginTop: 8 }}
-      >
-        {loading ? "Saving..." : "Save Product"}
-      </button>
+      <div style={{ display: "flex", gap: 12, marginTop: 8 }}>
+        <button
+          type="submit"
+          disabled={loading || deleting}
+          style={{ flex: 1, padding: 16, background: "var(--brand-plum)", color: "white", border: "none", borderRadius: 8, fontSize: 14, fontWeight: 900, textTransform: "uppercase", letterSpacing: 1, cursor: loading || deleting ? "not-allowed" : "pointer", opacity: loading || deleting ? 0.7 : 1 }}
+        >
+          {loading ? "Saving..." : "Save Product"}
+        </button>
+
+        {initialData?.id && (
+          <button
+            type="button"
+            onClick={handleDelete}
+            disabled={loading || deleting}
+            style={{ padding: "16px 24px", background: "#dc2626", color: "white", border: "none", borderRadius: 8, fontSize: 14, fontWeight: 900, textTransform: "uppercase", letterSpacing: 1, cursor: loading || deleting ? "not-allowed" : "pointer", opacity: loading || deleting ? 0.7 : 1 }}
+          >
+            {deleting ? "Deleting..." : "Delete"}
+          </button>
+        )}
+      </div>
     </form>
   );
 }
