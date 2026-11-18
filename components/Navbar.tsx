@@ -35,7 +35,7 @@ export default function Navbar() {
             onClick={() => setOpen((o) => !o)}
             style={{
               background: "transparent", border: "none", cursor: "pointer",
-              color: "var(--brand-muted)", padding: 0,
+              color: "var(--brand-plum)", padding: 0,
               display: "flex", flexDirection: "column", gap: 5,
             }}
           >

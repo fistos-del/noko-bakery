@@ -1,3 +1,4 @@
+
 export default function DeliveryPage() {
   return (
     <div style={{ background: "var(--brand-muted)", minHeight: "100vh", paddingTop: 120, paddingBottom: 80 }}>
@@ -13,21 +14,40 @@ export default function DeliveryPage() {
 
         <div style={{ display: "grid", gap: 32 }}>
           <div style={{ background: "white", padding: 40, borderRadius: 16, boxShadow: "0 10px 30px rgba(100,28,64,0.05)" }}>
-            <h2 style={{ fontSize: 24, fontWeight: 800, color: "var(--brand-plum)", marginBottom: 16 }}>Doorstep Delivery</h2>
+            <h2 style={{ fontSize: 24, fontWeight: 800, color: "var(--brand-plum)", marginBottom: 16 }}>
+              Doorstep Delivery
+            </h2>
+
             <p style={{ fontSize: 16, color: "var(--brand-plum)", lineHeight: 1.7, marginBottom: 16, opacity: 0.9 }}>
               We offer local delivery across Pretoria East. Simply select delivery when placing your order, and we&rsquo;ll arrange to get your goods to you.
             </p>
-            <p style={{ fontSize: 16, color: "var(--brand-plum)", fontWeight: 800, marginBottom: 16 }}>Delivery days are Monday - Saturday</p>
+
+            <p style={{ fontSize: 16, color: "var(--brand-plum)", fontWeight: 800, marginBottom: 16 }}>
+              Delivery fee: R25 flat
+            </p>
+
+            <p style={{ fontSize: 16, color: "var(--brand-plum)", fontWeight: 800, marginBottom: 16 }}>
+              Days: Monday - Saturday
+            </p>
+
+            <p style={{ fontSize: 16, color: "var(--brand-plum)", fontWeight: 800, marginBottom: 16 }}>
+              Hours: 9am - 1pm
+            </p>
           </div>
 
           <div style={{ background: "white", padding: 40, borderRadius: 16, boxShadow: "0 10px 30px rgba(100,28,64,0.05)" }}>
-            <h2 style={{ fontSize: 24, fontWeight: 800, color: "var(--brand-plum)", marginBottom: 16 }}>Collection</h2>
+            <h2 style={{ fontSize: 24, fontWeight: 800, color: "var(--brand-plum)", marginBottom: 16 }}>
+              Collection
+            </h2>
+
             <p style={{ fontSize: 16, color: "var(--brand-plum)", lineHeight: 1.7, marginBottom: 16, opacity: 0.9 }}>
               Prefer to collect? You&rsquo;re more than welcome to! We offer collections from our designated collection point during our allocated collection window, making it easy to pick up your freshly baked order at a time arranged with us.
             </p>
+
             <p style={{ fontSize: 16, color: "var(--brand-plum)", lineHeight: 1.7, marginBottom: 16, opacity: 0.9 }}>
               Collection details and the exact location will be shared with you once your order has been confirmed. No delivery fee applies to collection.
             </p>
+
             <ul style={{ listStyle: "none", padding: 0, fontSize: 15, color: "var(--brand-plum)", fontWeight: 700, display: "flex", flexDirection: "column", gap: 8 }}>
               <li>📍 Location: Mooikloof, Garstfontein rd</li>
               <li>📅 Days: Monday - Saturday</li>

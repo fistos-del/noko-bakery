@@ -44,7 +44,8 @@ export default async function ProductDetailPage({ params }: PageProps) {
     take: 2,
   });
 
-  const contents: string[] = JSON.parse(product.contents);
+  let contents: string[] = [];
+  try { const parsed = JSON.parse(product.contents); contents = Array.isArray(parsed) ? parsed.filter(x => typeof x === "string") : []; } catch {}
 
   return (
     <div

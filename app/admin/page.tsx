@@ -2,6 +2,7 @@ import { getCurrentUserWithAdmin } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { redirect } from "next/navigation";
 import Link from "next/link";
+import AdminNav from "@/components/AdminNav";
 
 export const dynamic = "force-dynamic";
 
@@ -47,6 +48,8 @@ export default async function AdminDashboard() {
           + NEW_ORDER
         </Link>
       </div>
+
+      <AdminNav />
 
       {/* Stats */}
       <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: 16, marginBottom: 32 }}>

@@ -3,7 +3,6 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { CartProvider } from "@/components/CartContext";
 import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import CartDrawer from "@/components/CartDrawer";
 
 export const metadata: Metadata = {
@@ -31,7 +30,6 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <CartProvider>
           <Navbar />
           <main style={{ minHeight: "60vh", paddingTop: 60 }}>{children}</main>
-          <Footer />
           <CartDrawer />
         </CartProvider>
       </body>
