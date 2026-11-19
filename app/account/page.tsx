@@ -28,11 +28,9 @@ export default function AccountPage() {
         throw new Error(data.error || "Login failed");
       }
 
-      // Check if admin and route accordingly
-      const meRes = await fetch("/api/auth/me");
-      const me = await meRes.json().catch(() => ({}));
+      const data = await res.json().catch(() => ({}));
 
-      if (me.user?.isAdmin) {
+      if (data.user?.isAdmin) {
         router.push("/admin");
       } else {
         router.push("/shop");
