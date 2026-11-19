@@ -19,7 +19,7 @@ export default function SubscriptionPage() {
 
         <div style={{ background: "white", padding: 40, borderRadius: 16, boxShadow: "0 10px 30px rgba(100,28,64,0.05)", display: "flex", flexDirection: "column", gap: 24, marginBottom: 60 }}>
           <p style={{ fontSize: 16, color: "var(--brand-plum)", lineHeight: 1.8 }}>
-            Life is a little sweeter with good things to look forward to. Our bakery subscriptions are fed for those who love freshly baked treats on hand.
+            Life is a little sweeter with good things to look forward to. Our bakery subscriptions are made for those who love freshly baked treats on hand.
           </p>
           <p style={{ fontSize: 16, color: "var(--brand-plum)", lineHeight: 1.8 }}>
             Choose between a weekly or monthly subscription and enjoy a selection of our favorite bakes, thoughtfully chosen from our menu and prepared fresh for your box.

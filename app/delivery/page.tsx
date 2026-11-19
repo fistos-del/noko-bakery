@@ -23,15 +23,15 @@ export default function DeliveryPage() {
             </p>
 
             <p style={{ fontSize: 16, color: "var(--brand-plum)", fontWeight: 800, marginBottom: 16 }}>
-              📍 📍 Delivery fee: R25 flat
+              📍 Delivery fee: R25 flat
             </p>
 
             <p style={{ fontSize: 16, color: "var(--brand-plum)", fontWeight: 800, marginBottom: 16 }}>
-              📅 📅 Days: Monday - Saturday
+              📅 Days: Monday - Saturday
             </p>
 
             <p style={{ fontSize: 16, color: "var(--brand-plum)", fontWeight: 800, marginBottom: 16 }}>
-              🕒 🕒 Hours: 9am - 1pm
+              🕒 Hours: 9am - 1pm
             </p>
           </div>
 
@@ -50,7 +50,7 @@ export default function DeliveryPage() {
 
             <ul style={{ listStyle: "none", padding: 0, fontSize: 15, color: "var(--brand-plum)", fontWeight: 700, display: "flex", flexDirection: "column", gap: 8 }}>
               <li>📍 Location: Mooikloof, Garstfontein rd</li>
-              <li>📅 📅 📅 Days: Monday - Saturday</li>
+              <li>📅 📅 Days: Monday - Saturday</li>
               <li>🕒 Hours: 9am - 11am</li>
             </ul>
           </div>
