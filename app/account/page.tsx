@@ -30,12 +30,8 @@ export default function AccountPage() {
 
       const data = await res.json().catch(() => ({}));
 
-      if (data.user?.isAdmin) {
-        router.push("/admin");
-      } else {
-        router.push("/shop");
-      }
-      router.refresh();
+      const destination = data.user?.isAdmin ? "/admin" : "/shop";
+      window.location.assign(destination);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Something went wrong");
       setSubmitting(false);

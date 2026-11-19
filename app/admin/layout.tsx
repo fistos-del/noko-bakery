@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const MENU = [
-  { href: "/account", label: "Dashboard", icon: "🏠" },
+  { href: "/admin", label: "Dashboard", icon: "🏠" },
   { href: "/admin/orders", label: "Orders", icon: "📋" },
   { href: "/admin/products", label: "Products", icon: "🥖" },
   { href: "/admin/customers", label: "Customers", icon: "👥" },

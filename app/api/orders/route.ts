@@ -4,7 +4,7 @@ import { NextRequest, NextResponse } from "next/server";
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { items, name, email, phone, type, address, notes, paymentMethod, discountCode } = body;
+    const { items, name, email, phone, type, address, notes, paymentMethod, discountCode, deliveryDate } = body;
 
     if (!items || !Array.isArray(items) || items.length === 0) {
       return NextResponse.json({ error: "Cart is empty" }, { status: 400 });
@@ -15,6 +15,18 @@ export async function POST(request: NextRequest) {
         { status: 400 }
       );
     }
+    if (!["DELIVERY", "COLLECTION"].includes(type)) {
+      return NextResponse.json({ error: "Invalid order type" }, { status: 400 });
+    }
+    if (!["CARD", "EFT", "QR"].includes(paymentMethod)) {
+      return NextResponse.json({ error: "Invalid payment method" }, { status: 400 });
+    }
+    if (type === "DELIVERY" && (!deliveryDate || Number.isNaN(new Date(deliveryDate).getTime()))) {
+      return NextResponse.json({ error: "A valid delivery date is required" }, { status: 400 });
+    }
+    const parsedDeliveryDate =
+      type === "DELIVERY" ? new Date(deliveryDate) : null;
+
     if (type === "DELIVERY" && !address) {
       return NextResponse.json(
         { error: "Address is required for delivery" },
@@ -54,12 +66,8 @@ export async function POST(request: NextRequest) {
       const code = await prisma.discountCode.findUnique({
         where: { code: discountCode.toUpperCase() },
       });
-      if (code && code.active && code.usesUsed < code.maxUses) {
+      if (code && code.active && code.usesUsed < code.maxUses && (!code.expiresAt || code.expiresAt > new Date())) {
         discount = (subtotal * code.percentOff) / 100;
-        await prisma.discountCode.update({
-          where: { id: code.id },
-          data: { usesUsed: code.usesUsed + 1 },
-        });
       }
     }
 
@@ -81,9 +89,9 @@ export async function POST(request: NextRequest) {
         discount,
         total,
         paymentMethod,
-        paymentStatus: "PAID",
+        paymentStatus: "PENDING",
         notes: notes || null,
-        deliveryDate: new Date(Date.now() + 2 * 86400000),
+        deliveryDate: parsedDeliveryDate,
         items: { create: orderItems },
       },
     });

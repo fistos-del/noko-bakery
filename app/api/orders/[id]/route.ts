@@ -1,6 +1,46 @@
 import { prisma } from "@/lib/prisma";
 import { NextRequest, NextResponse } from "next/server";
 
+export async function GET(
+  _request: NextRequest,
+  { params }: { params: { id: string } }
+) {
+  try {
+    const order = await prisma.order.findUnique({
+      where: { id: params.id },
+      include: { items: { include: { product: true } } },
+    });
+
+    if (!order) {
+      return NextResponse.json({ error: "Order not found" }, { status: 404 });
+    }
+
+    return NextResponse.json({
+      order: {
+        id: order.id,
+        orderNumber: order.orderNumber,
+        status: order.status,
+        type: order.type,
+        total: order.total,
+        address: order.address,
+        createdAt: order.createdAt,
+        items: order.items.map((item) => ({
+          name: item.product.name,
+          quantity: item.quantity,
+          unitPrice: item.unitPrice,
+          subtotal: item.subtotal,
+        })),
+      },
+    });
+  } catch (error) {
+    console.error("Order tracking error:", error);
+    return NextResponse.json(
+      { error: "Failed to retrieve order" },
+      { status: 500 }
+    );
+  }
+}
+
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
@@ -14,6 +54,7 @@ export async function POST(request: NextRequest) {
       notes,
       paymentMethod,
       discountCode,
+      deliveryDate,
     } = body;
 
     // Validate
@@ -26,6 +67,18 @@ export async function POST(request: NextRequest) {
         { status: 400 },
       );
     }
+    if (!["DELIVERY", "COLLECTION"].includes(type)) {
+      return NextResponse.json({ error: "Invalid order type" }, { status: 400 });
+    }
+    if (!["CARD", "EFT", "QR"].includes(paymentMethod)) {
+      return NextResponse.json({ error: "Invalid payment method" }, { status: 400 });
+    }
+    if (type === "DELIVERY" && (!deliveryDate || Number.isNaN(new Date(deliveryDate).getTime()))) {
+      return NextResponse.json({ error: "A valid delivery date is required" }, { status: 400 });
+    }
+    const parsedDeliveryDate =
+      type === "DELIVERY" ? new Date(deliveryDate) : null;
+
     if (type === "DELIVERY" && !address) {
       return NextResponse.json(
         { error: "Address is required for delivery" },
@@ -75,10 +128,6 @@ export async function POST(request: NextRequest) {
         (!code.expiresAt || code.expiresAt > new Date())
       ) {
         discount = (subtotal * code.percentOff) / 100;
-        await prisma.discountCode.update({
-          where: { id: code.id },
-          data: { usesUsed: code.usesUsed + 1 },
-        });
       }
     }
 
@@ -103,9 +152,9 @@ export async function POST(request: NextRequest) {
         discount,
         total,
         paymentMethod,
-        paymentStatus: "PAID",
+        paymentStatus: "PENDING",
         notes: notes || null,
-        deliveryDate: new Date(Date.now() + 2 * 86400000),
+        deliveryDate: parsedDeliveryDate,
         items: { create: orderItems },
       },
     });

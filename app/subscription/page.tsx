@@ -22,7 +22,7 @@ export default function SubscriptionPage() {
             Life is a little sweeter with good things to look forward to. Our bakery subscriptions are made for those who love freshly baked treats on hand.
           </p>
           <p style={{ fontSize: 16, color: "var(--brand-plum)", lineHeight: 1.8 }}>
-            Choose between a weekly or monthly subscription and enjoy a selection of our favorite bakes, thoughtfully chosen from our menu and prepared fresh for your box.
+            Choose from one of our weekly bakery subscriptions and enjoy a selection of our favorite bakes, thoughtfully chosen from our menu and prepared fresh for your box.
           </p>
           <p style={{ fontSize: 16, color: "var(--brand-plum)", lineHeight: 1.8 }}>
             Whether it&rsquo;s something special for your weekend breakfast, a treat to share with family or simply a little indulgence for yourself, we&rsquo;ve got you covered.

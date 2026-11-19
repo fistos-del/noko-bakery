@@ -42,6 +42,7 @@ export async function POST(request: NextRequest) {
         id: customer.id,
         email: customer.email,
         name: customer.name,
+        isAdmin: customer.isAdmin,
       },
     });
   } catch (error) {

@@ -50,7 +50,7 @@ export default function DeliveryPage() {
 
             <ul style={{ listStyle: "none", padding: 0, fontSize: 15, color: "var(--brand-plum)", fontWeight: 700, display: "flex", flexDirection: "column", gap: 8 }}>
               <li>📍 Location: Mooikloof, Garstfontein rd</li>
-              <li>📅Days: Monday - Saturday</li>
+              <li>📅 Days: Monday - Saturday</li>
               <li>🕒 Hours: 9am - 11am</li>
             </ul>
           </div>

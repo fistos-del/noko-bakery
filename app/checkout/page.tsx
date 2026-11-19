@@ -430,9 +430,9 @@ export default function CheckoutPage() {
                 lineHeight: 1.6,
               }}
             >
-              💡 For the prototype, orders are marked as paid instantly. Real
-              payment integration (Standard Bank + PayFast) goes live in a
-              future update.
+              💡 This prototype records your selected payment method, but does
+              not process payments yet. Your order will remain pending until
+              payment integration is configured and payment is verified.
             </div>
           </Section>
         </div>
