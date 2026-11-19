@@ -61,7 +61,6 @@ export async function POST(request: NextRequest) {
         allergens: allergens || "Gluten, Dairy, Egg",
         inStock: inStock !== undefined ? inStock : true,
         isSeasonal: isSeasonal || false,
-        imageUrl: imageUrl || "/images/placeholder.jpg",
       },
     });
 
