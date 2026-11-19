@@ -94,9 +94,17 @@ export default async function ProductDetailPage({ params }: PageProps) {
               overflow: "hidden",
             }}
           >
-            <div style={{ filter: "drop-shadow(0 20px 40px rgba(0,0,0,0.4))" }}>
-              🥖
-            </div>
+            {product.imageUrl.startsWith("http") ? (
+              <img
+                src={product.imageUrl}
+                alt={product.name}
+                style={{ width: "100%", height: "100%", objectFit: "cover" }}
+              />
+            ) : (
+              <div style={{ filter: "drop-shadow(0 20px 40px rgba(0,0,0,0.4))", fontSize: "clamp(80px, 20vw, 200px)" }}>
+                🥖
+              </div>
+            )}
             {product.isSeasonal && (
               <div
                 style={{
@@ -345,15 +353,15 @@ export default async function ProductDetailPage({ params }: PageProps) {
                       height: "100%",
                     }}
                   >
-                    <div
-                      style={{
-                        fontSize: 60,
-                        textAlign: "center",
-                        marginBottom: 16,
-                      }}
-                    >
-                      🥐
-                    </div>
+                    {p.imageUrl.startsWith("http") ? (
+                      <img src={p.imageUrl} alt={p.name} style={{ width: "100%", height: 120, objectFit: "cover", borderRadius: 8, marginBottom: 16 }} />
+                    ) : (
+                      {p.imageUrl.startsWith("http") ? (
+                      <img src={p.imageUrl} alt={p.name} style={{ width: "100%", height: 120, objectFit: "cover", borderRadius: 8, marginBottom: 16 }} />
+                    ) : (
+                      <div style={{ fontSize: 60, textAlign: "center", marginBottom: 16 }}>🥐</div>
+                    )}
+                    )}
                     <h3
                       style={{
                         fontSize: 18,
