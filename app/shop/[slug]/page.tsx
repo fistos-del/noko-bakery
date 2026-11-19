@@ -11,6 +11,12 @@ interface PageProps {
   params: { slug: string };
 }
 
+function emojiFor(category: string): string {
+  if (category === "BAGEL") return "🥯";
+  if (category === "PASTRY") return "🥐";
+  return "🥖";
+}
+
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
@@ -25,14 +31,9 @@ export async function generateMetadata({
 }
 
 export default async function ProductDetailPage({ params }: PageProps) {
-  console.log("=== PRODUCT DETAIL DEBUG ===");
-  console.log("Requested slug:", params.slug);
-
   const product = await prisma.product.findUnique({
     where: { slug: params.slug },
   });
-
-  console.log("Found product:", product ? product.name : "NULL");
 
   if (!product) notFound();
 
@@ -45,7 +46,12 @@ export default async function ProductDetailPage({ params }: PageProps) {
   });
 
   let contents: string[] = [];
-  try { const parsed = JSON.parse(product.contents); contents = Array.isArray(parsed) ? parsed.filter(x => typeof x === "string") : []; } catch {}
+  try {
+    const parsed = JSON.parse(product.contents);
+    contents = Array.isArray(parsed) ? parsed.filter((x) => typeof x === "string") : [];
+  } catch {}
+
+  const useImage = product.imageUrl.startsWith("http");
 
   return (
     <div
@@ -89,20 +95,25 @@ export default async function ProductDetailPage({ params }: PageProps) {
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              fontSize: "clamp(80px, 20vw, 200px)",
               position: "relative",
               overflow: "hidden",
             }}
           >
-            {product.imageUrl.startsWith("http") ? (
+            {useImage ? (
+              // eslint-disable-next-line @next/next/no-img-element
               <img
                 src={product.imageUrl}
                 alt={product.name}
                 style={{ width: "100%", height: "100%", objectFit: "cover" }}
               />
             ) : (
-              <div style={{ filter: "drop-shadow(0 20px 40px rgba(0,0,0,0.4))", fontSize: "clamp(80px, 20vw, 200px)" }}>
-                🥖
+              <div
+                style={{
+                  filter: "drop-shadow(0 20px 40px rgba(0,0,0,0.4))",
+                  fontSize: "clamp(80px, 20vw, 200px)",
+                }}
+              >
+                {emojiFor(product.category)}
               </div>
             )}
             {product.isSeasonal && (
@@ -162,69 +173,71 @@ export default async function ProductDetailPage({ params }: PageProps) {
             {product.description}
           </p>
 
-          <div
-            style={{
-              padding: "24px 0",
-              borderTop: "1px solid var(--border-dark)",
-              borderBottom: "1px solid var(--border-dark)",
-              marginBottom: 32,
-            }}
-          >
+          {contents.length > 0 && (
             <div
               style={{
-                fontSize: 11,
-                color: "var(--text-soft)",
-                letterSpacing: 2,
-                textTransform: "uppercase",
-                fontWeight: 800,
-                marginBottom: 16,
+                padding: "24px 0",
+                borderTop: "1px solid var(--border-dark)",
+                borderBottom: "1px solid var(--border-dark)",
+                marginBottom: 32,
               }}
             >
-              What is inside
-            </div>
-            <ul
-              style={{
-                listStyle: "none",
-                padding: 0,
-                margin: 0,
-                display: "grid",
-                gridTemplateColumns: "1fr 1fr",
-                gap: "12px 20px",
-              }}
-            >
-              {contents.map((item, i) => (
-                <li
-                  key={i}
-                  style={{
-                    fontSize: 14,
-                    color: "var(--text)",
-                    display: "flex",
-                    alignItems: "center",
-                    gap: 10,
-                  }}
-                >
-                  <span
+              <div
+                style={{
+                  fontSize: 11,
+                  color: "var(--text-soft)",
+                  letterSpacing: 2,
+                  textTransform: "uppercase",
+                  fontWeight: 800,
+                  marginBottom: 16,
+                }}
+              >
+                What is inside
+              </div>
+              <ul
+                style={{
+                  listStyle: "none",
+                  padding: 0,
+                  margin: 0,
+                  display: "grid",
+                  gridTemplateColumns: "1fr 1fr",
+                  gap: "12px 20px",
+                }}
+              >
+                {contents.map((item, i) => (
+                  <li
+                    key={i}
                     style={{
-                      width: 20,
-                      height: 20,
-                      borderRadius: "50%",
-                      background: "var(--primary-soft)",
-                      color: "var(--primary-light)",
+                      fontSize: 14,
+                      color: "var(--text)",
                       display: "flex",
                       alignItems: "center",
-                      justifyContent: "center",
-                      fontSize: 11,
-                      fontWeight: 900,
-                      flexShrink: 0,
+                      gap: 10,
                     }}
                   >
-                    ✓
-                  </span>
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
+                    <span
+                      style={{
+                        width: 20,
+                        height: 20,
+                        borderRadius: "50%",
+                        background: "var(--primary-soft)",
+                        color: "var(--primary-light)",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        fontSize: 11,
+                        fontWeight: 900,
+                        flexShrink: 0,
+                      }}
+                    >
+                      ✓
+                    </span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
 
           <div
             style={{
@@ -339,7 +352,16 @@ export default async function ProductDetailPage({ params }: PageProps) {
             }}
           >
             {related.map((p) => {
-              const relatedContents: string[] = JSON.parse(p.contents);
+              let relatedContents: string[] = [];
+              try {
+                const parsed = JSON.parse(p.contents);
+                relatedContents = Array.isArray(parsed)
+                  ? parsed.filter((x) => typeof x === "string")
+                  : [];
+              } catch {}
+
+              const useImg = p.imageUrl.startsWith("http");
+
               return (
                 <MagneticCard key={p.id} maxTilt={5}>
                   <Link
@@ -353,15 +375,28 @@ export default async function ProductDetailPage({ params }: PageProps) {
                       height: "100%",
                     }}
                   >
-                    {p.imageUrl.startsWith("http") ? (
-                      <img src={p.imageUrl} alt={p.name} style={{ width: "100%", height: 120, objectFit: "cover", borderRadius: 8, marginBottom: 16 }} />
-                    ) : (
-                      {p.imageUrl.startsWith("http") ? (
-                      <img src={p.imageUrl} alt={p.name} style={{ width: "100%", height: 120, objectFit: "cover", borderRadius: 8, marginBottom: 16 }} />
-                    ) : (
-                      <div style={{ fontSize: 60, textAlign: "center", marginBottom: 16 }}>🥐</div>
-                    )}
-                    )}
+                    <div
+                      style={{
+                        height: 120,
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        marginBottom: 16,
+                        overflow: "hidden",
+                        borderRadius: 8,
+                      }}
+                    >
+                      {useImg ? (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img
+                          src={p.imageUrl}
+                          alt={p.name}
+                          style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                        />
+                      ) : (
+                        <div style={{ fontSize: 60 }}>{emojiFor(p.category)}</div>
+                      )}
+                    </div>
                     <h3
                       style={{
                         fontSize: 18,
