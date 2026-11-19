@@ -33,6 +33,7 @@ export async function POST(request: NextRequest) {
       allergens,
       inStock,
       isSeasonal,
+      imageUrl,
     } = body;
 
     if (!name || !slug || !price) {
