@@ -23,6 +23,7 @@ export async function PATCH(
     if (body.allergens !== undefined) data.allergens = body.allergens;
     if (body.inStock !== undefined) data.inStock = body.inStock;
     if (body.isSeasonal !== undefined) data.isSeasonal = body.isSeasonal;
+    if (body.imageUrl !== undefined) data.imageUrl = body.imageUrl;
 
     const product = await prisma.product.update({
       where: { id: params.id },

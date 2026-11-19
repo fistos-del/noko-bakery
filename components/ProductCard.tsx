@@ -101,7 +101,7 @@ export default function ProductCard({ product }: { product: Product }) {
           style={{
             fontSize: 18,
             fontWeight: 900,
-            color: "var(--plum)",
+            color: "#111",
             marginBottom: 10,
             textTransform: "uppercase",
             letterSpacing: 0.5,
@@ -112,7 +112,7 @@ export default function ProductCard({ product }: { product: Product }) {
         <p
           style={{
             fontSize: 13,
-            color: "#6b4257",
+            color: "#333",
             lineHeight: 1.6,
             marginBottom: 16,
             flex: 1,
@@ -126,7 +126,7 @@ export default function ProductCard({ product }: { product: Product }) {
             <div
               style={{
                 fontSize: 10,
-                color: "var(--plum)",
+                color: "#111",
                 letterSpacing: 2,
                 textTransform: "uppercase",
                 fontWeight: 800,
@@ -145,16 +145,16 @@ export default function ProductCard({ product }: { product: Product }) {
                     borderRadius: 8,
                     border:
                       selectedTier?.qty === t.qty
-                        ? "2px solid var(--plum)"
-                        : "1px solid var(--pink-glow)",
+                        ? "2px solid var(--brand-plum)"
+                        : "1px solid rgba(100,28,64,0.3)",
                     background:
                       selectedTier?.qty === t.qty
-                        ? "var(--plum)"
+                        ? "var(--brand-plum)"
                         : "transparent",
                     color:
                       selectedTier?.qty === t.qty
-                        ? "var(--pink-soft)"
-                        : "var(--plum)",
+                        ? "white"
+                        : "#111",
                     fontSize: 12,
                     fontWeight: 700,
                     cursor: "pointer",
@@ -170,10 +170,10 @@ export default function ProductCard({ product }: { product: Product }) {
         <div
           style={{
             paddingTop: 12,
-            borderTop: "1px solid var(--pink-glow)",
+            borderTop: "1px solid rgba(100,28,64,0.15)",
             marginBottom: 12,
             fontSize: 11,
-            color: "#6b4257",
+            color: "#555",
           }}
         >
           Allergens: {product.allergens}
@@ -190,7 +190,7 @@ export default function ProductCard({ product }: { product: Product }) {
             style={{
               fontSize: 22,
               fontWeight: 900,
-              color: "var(--plum)",
+              color: "#111",
             }}
           >
             R {displayPrice}
@@ -198,9 +198,9 @@ export default function ProductCard({ product }: { product: Product }) {
           <Link
             href={`/shop/${product.slug}`}
             style={{
-              padding: "8px 16px",
-              background: "var(--plum)",
-              color: "var(--pink-soft)",
+              padding: "8px 20px",
+              background: "var(--brand-plum)",
+              color: "white",
               borderRadius: 8,
               fontSize: 11,
               fontWeight: 800,
@@ -214,7 +214,7 @@ export default function ProductCard({ product }: { product: Product }) {
         </div>
 
         {list.length > 0 && (
-          <div style={{ marginTop: 10, fontSize: 11, color: "#6b4257" }}>
+          <div style={{ marginTop: 10, fontSize: 11, color: "#555" }}>
             {list.slice(0, 3).join(" · ")}
           </div>
         )}
