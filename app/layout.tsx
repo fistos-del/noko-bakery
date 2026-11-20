@@ -4,6 +4,7 @@ import type { ReactNode } from "react";
 import { CartProvider } from "@/components/CartContext";
 import Navbar from "@/components/Navbar";
 import CartDrawer from "@/components/CartDrawer";
+import Footer from "@/components/Footer"; // <-- ADDED THIS
 
 export const metadata: Metadata = {
   title: "Noko Bakery",
@@ -13,7 +14,6 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
-      {/* ADD THE GOOGLE FONT LINK HERE */}
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
@@ -31,6 +31,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           <Navbar />
           <main style={{ minHeight: "60vh", paddingTop: 60 }}>{children}</main>
           <CartDrawer />
+          <Footer /> {/* <-- ADDED THIS */}
         </CartProvider>
       </body>
     </html>
