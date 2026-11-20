@@ -1,6 +1,10 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
+import { CartProvider } from "@/components/CartContext";
+import Navbar from "@/components/Navbar";
+import CartDrawer from "@/components/CartDrawer";
+import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: "Noko Bakery",
@@ -23,7 +27,12 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         />
       </head>
       <body>
-        {children}
+        <CartProvider>
+          <Navbar />
+          <main style={{ minHeight: "60vh", paddingTop: 60 }}>{children}</main>
+          <CartDrawer />
+          <Footer />
+        </CartProvider>
       </body>
     </html>
   );
