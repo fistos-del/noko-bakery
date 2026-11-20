@@ -2,90 +2,52 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer style={{
-      background: "var(--bg-alt)",
-      borderTop: "1px solid var(--border)",
-      padding: "4rem 1.5rem 2rem",
-      marginTop: "auto",
-      width: "100%",
-    }}>
-      <div style={{
-        maxWidth: "1200px",
-        margin: "0 auto",
-        display: "grid",
-        gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
-        gap: "2.5rem",
-      }}>
-        {/* Brand */}
-        <div>
-          <h2 style={{ fontSize: "1.8rem", fontWeight: 800, letterSpacing: "-0.02em", margin: 0 }}>NOKO</h2>
-          <p style={{ fontSize: "0.7rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", marginTop: "0.25rem", color: "var(--text-muted)" }}>Artisan Bakery</p>
-          <p style={{ fontSize: "0.9rem", lineHeight: 1.7, color: "var(--text-muted)", marginTop: "1.25rem" }}>
+    <footer className="bg-[#f4f4f4] text-[#1a1a1a] pt-16 pb-8 border-t border-gray-200 mt-auto w-full">
+      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12 text-sm">
+        <div className="flex flex-col gap-4">
+          <div>
+            <h2 className="text-2xl font-extrabold tracking-tight">NOKO</h2>
+            <p className="text-xs font-bold tracking-[0.2em] uppercase mt-1">Artisan Bakery</p>
+          </div>
+          <p className="text-gray-600 leading-relaxed max-w-xs">
             Handmade breads, pastries, and curated boxes<br />
             delivered fresh to Pretoria East. Made with care,<br />
             baked with love.
           </p>
+          <div className="bg-[#e6dac3] text-[#4a3f35] px-4 py-2 rounded-md inline-block w-fit text-xs font-medium mt-2">
+            Now baking: Autumn Danishes.
+          </div>
         </div>
-
-        {/* Shop */}
-        <div>
-          <h3 style={{ fontSize: "0.75rem", fontWeight: 700, letterSpacing: "0.15em", textTransform: "uppercase", marginBottom: "1rem" }}>Shop</h3>
-          <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "0.6rem" }}>
-            <li><Link href="/shop" style={{ color: "var(--text-muted)", textDecoration: "none", fontSize: "0.9rem" }}>All Products</Link></li>
-            <li><Link href="/subscribe" style={{ color: "var(--text-muted)", textDecoration: "none", fontSize: "0.9rem" }}>Subscribe & Save</Link></li>
-            <li><Link href="/delivery" style={{ color: "var(--text-muted)", textDecoration: "none", fontSize: "0.9rem" }}>Delivery Info</Link></li>
-            <li><Link href="/account" style={{ color: "var(--text-muted)", textDecoration: "none", fontSize: "0.9rem" }}>My Account</Link></li>
-          </ul>
+        <div className="flex flex-col gap-3">
+          <h3 className="font-bold tracking-widest uppercase text-xs mb-2">Shop</h3>
+          <Link href="/shop" className="text-gray-600 hover:text-black">All Products</Link>
+          <Link href="/subscribe" className="text-gray-600 hover:text-black">Subscribe & Save</Link>
+          <Link href="/delivery" className="text-gray-600 hover:text-black">Delivery Info</Link>
+          <Link href="/account" className="text-gray-600 hover:text-black">My Account</Link>
         </div>
-
-        {/* Info */}
-        <div>
-          <h3 style={{ fontSize: "0.75rem", fontWeight: 700, letterSpacing: "0.15em", textTransform: "uppercase", marginBottom: "1rem" }}>Info</h3>
-          <p style={{ fontSize: "0.9rem", color: "var(--text-muted)", margin: "0 0 0.4rem" }}>R25 flat delivery fee</p>
-          <p style={{ fontSize: "0.9rem", color: "var(--text-muted)", margin: "0 0 0.4rem" }}>15–20km radius</p>
-          <p style={{ fontSize: "0.9rem", color: "var(--text-muted)", margin: "0 0 0.4rem" }}>Collection 8–10am</p>
-          <p style={{ fontSize: "0.9rem", color: "var(--text-muted)", margin: 0 }}>Allergens: Gluten, Dairy, Egg</p>
+        <div className="flex flex-col gap-3">
+          <h3 className="font-bold tracking-widest uppercase text-xs mb-2">Info</h3>
+          <p className="text-gray-600">R25 flat delivery fee</p>
+          <p className="text-gray-600">15–20km radius</p>
+          <p className="text-gray-600">Collection 8–10am</p>
+          <p className="text-gray-600">Allergens: Gluten, Dairy, Egg</p>
         </div>
-
-        {/* Contact */}
-        <div>
-          <h3 style={{ fontSize: "0.75rem", fontWeight: 700, letterSpacing: "0.15em", textTransform: "uppercase", marginBottom: "1rem" }}>Contact</h3>
-          <p style={{ fontSize: "0.9rem", color: "var(--text-muted)", margin: "0 0 0.4rem" }}>Mooikloof Glen Country Estate</p>
-          <p style={{ fontSize: "0.9rem", color: "var(--text-muted)", margin: "0 0 0.4rem" }}>Corner Garsfontein Rd & Topaz Crescent</p>
-          <p style={{ fontSize: "0.9rem", color: "var(--text-muted)", margin: "0 0 0.4rem" }}>Pretoria East</p>
-          <a href="https://wa.me/27000000000" target="_blank" rel="noreferrer" style={{
-            display: "inline-flex",
-            alignItems: "center",
-            gap: "0.4rem",
-            marginTop: "0.75rem",
-            color: "var(--text-muted)",
-            textDecoration: "none",
-            fontSize: "0.9rem",
-          }}>
-            <span style={{ color: "#b8a4c9" }}>💬</span> WhatsApp Us
+        <div className="flex flex-col gap-3">
+          <h3 className="font-bold tracking-widest uppercase text-xs mb-2">Contact</h3>
+          <p className="text-gray-600">Mooikloof Glen Country Estate</p>
+          <p className="text-gray-600">Corner Garsfontein Rd & Topaz Crescent</p>
+          <p className="text-gray-600">Pretoria East</p>
+          <a href="https://wa.me/27000000000" target="_blank" rel="noreferrer" className="flex items-center gap-2 text-gray-600 hover:text-black mt-2">
+            <span className="text-lg text-[#a48bb5]">💬</span> WhatsApp Us
           </a>
         </div>
       </div>
-
-      {/* Bottom bar */}
-      <div style={{
-        maxWidth: "1200px",
-        margin: "3rem auto 0",
-        paddingTop: "1.5rem",
-        borderTop: "1px solid var(--border)",
-        display: "flex",
-        flexWrap: "wrap",
-        justifyContent: "space-between",
-        alignItems: "center",
-        gap: "1rem",
-        fontSize: "0.8rem",
-        color: "var(--text-muted)",
-      }}>
-        <p style={{ margin: 0 }}>© 2026 Noko Bakery. All rights reserved.</p>
-        <div style={{ display: "flex", gap: "1.5rem" }}>
-          <Link href="/privacy" style={{ color: "var(--text-muted)", textDecoration: "none" }}>Privacy Policy</Link>
-          <Link href="/terms" style={{ color: "var(--text-muted)", textDecoration: "none" }}>Terms of Sale</Link>
-          <Link href="/popia" style={{ color: "var(--text-muted)", textDecoration: "none" }}>POPIA Compliant</Link>
+      <div className="max-w-7xl mx-auto px-6 mt-16 pt-8 border-t border-gray-300 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-500">
+        <p>© 2026 Noko Bakery. All rights reserved.</p>
+        <div className="flex gap-4">
+          <Link href="/privacy" className="hover:text-black">Privacy Policy</Link>
+          <Link href="/terms" className="hover:text-black">Terms of Sale</Link>
+          <Link href="/popia" className="hover:text-black">POPIA Compliant</Link>
         </div>
       </div>
     </footer>
