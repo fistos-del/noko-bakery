@@ -13,25 +13,36 @@ export async function PATCH(
 
   try {
     const body = await request.json();
-    const { status } = body;
+    const { status, paymentStatus } = body;
 
-    const validStatuses = [
-      "PENDING",
-      "CONFIRMED",
-      "BAKING",
-      "READY",
-      "OUT_FOR_DELIVERY",
-      "DELIVERED",
-      "CANCELLED",
-    ];
+    const data: { status?: string; paymentStatus?: string } = {};
 
-    if (!validStatuses.includes(status)) {
-      return NextResponse.json({ error: "Invalid status" }, { status: 400 });
+    if (status) {
+      const validStatuses = [
+        "PENDING", "CONFIRMED", "BAKING", "READY",
+        "OUT_FOR_DELIVERY", "DELIVERED", "CANCELLED",
+      ];
+      if (!validStatuses.includes(status)) {
+        return NextResponse.json({ error: "Invalid status" }, { status: 400 });
+      }
+      data.status = status;
+    }
+
+    if (paymentStatus) {
+      const validPayment = ["PENDING", "PAID", "FAILED", "REFUNDED"];
+      if (!validPayment.includes(paymentStatus)) {
+        return NextResponse.json({ error: "Invalid payment status" }, { status: 400 });
+      }
+      data.paymentStatus = paymentStatus;
+    }
+
+    if (Object.keys(data).length === 0) {
+      return NextResponse.json({ error: "Nothing to update" }, { status: 400 });
     }
 
     const order = await prisma.order.update({
       where: { id: params.id },
-      data: { status },
+      data,
     });
 
     return NextResponse.json({ order });
