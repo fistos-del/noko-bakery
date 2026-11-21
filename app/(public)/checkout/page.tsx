@@ -98,7 +98,7 @@ export default function CheckoutPage() {
 
       const data = await res.json();
       clearCart();
-      router.push(`/order/${data.orderId}/receipt`);
+      router.push(`/checkout/pay/${data.orderId}`);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Something went wrong");
       setSubmitting(false);
