@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import ImageDropzone from "./ImageDropzone";
 
 type ProductData = {
   id?: string;
@@ -178,8 +179,15 @@ export default function AdminProductForm({ initialData }: { initialData?: Produc
       </div>
 
       <div>
-        <label style={labelStyle}>Image URL (paste a link)</label>
-        <input name="imageUrl" value={form.imageUrl} onChange={handleChange} placeholder="https://..." style={inputStyle} />
+        <label style={labelStyle}>Product Image</label>
+        <ImageDropzone
+          value={form.imageUrl}
+          onChange={(url) => setForm({ ...form, imageUrl: url })}
+        />
+        <div style={{ marginTop: 12 }}>
+          <label style={{ ...labelStyle, fontSize: 10, color: "var(--text-muted)" }}>Or paste a URL manually</label>
+          <input name="imageUrl" value={form.imageUrl} onChange={handleChange} placeholder="https://..." style={inputStyle} />
+        </div>
       </div>
 
       <div>
