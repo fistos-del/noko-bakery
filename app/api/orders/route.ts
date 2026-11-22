@@ -1,4 +1,5 @@
 import { prisma } from "@/lib/prisma";
+import { validateDeliveryDate } from "@/lib/deliveryDates";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(request: NextRequest) {
@@ -10,10 +11,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "Cart is empty" }, { status: 400 });
     }
     if (!name || !email || !phone) {
-      return NextResponse.json(
-        { error: "Name, email, and phone are required" },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: "Name, email, and phone are required" }, { status: 400 });
     }
     if (!["DELIVERY", "COLLECTION"].includes(type)) {
       return NextResponse.json({ error: "Invalid order type" }, { status: 400 });
@@ -21,29 +19,26 @@ export async function POST(request: NextRequest) {
     if (!["CARD", "EFT", "QR"].includes(paymentMethod)) {
       return NextResponse.json({ error: "Invalid payment method" }, { status: 400 });
     }
-    if (type === "DELIVERY" && (!deliveryDate || Number.isNaN(new Date(deliveryDate).getTime()))) {
-      return NextResponse.json({ error: "A valid delivery date is required" }, { status: 400 });
+
+    // Date rules apply to BOTH delivery and collection
+    if (!deliveryDate) {
+      return NextResponse.json({ error: "A valid date is required" }, { status: 400 });
     }
-    const parsedDeliveryDate =
-      type === "DELIVERY" ? new Date(deliveryDate) : null;
+    const dateCheck = validateDeliveryDate(
+      new Date(deliveryDate).toISOString().split("T")[0]
+    );
+    if (!dateCheck.valid) {
+      return NextResponse.json({ error: dateCheck.error }, { status: 400 });
+    }
 
     if (type === "DELIVERY" && !address) {
-      return NextResponse.json(
-        { error: "Address is required for delivery" },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: "Address is required for delivery" }, { status: 400 });
     }
 
     const productIds = items.map((i: any) => i.productId);
-    const products = await prisma.product.findMany({
-      where: { id: { in: productIds } },
-    });
-
+    const products = await prisma.product.findMany({ where: { id: { in: productIds } } });
     if (products.length !== items.length) {
-      return NextResponse.json(
-        { error: "One or more products not found" },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: "One or more products not found" }, { status: 400 });
     }
 
     let subtotal = 0;
@@ -91,7 +86,7 @@ export async function POST(request: NextRequest) {
         paymentMethod,
         paymentStatus: "PENDING",
         notes: notes || null,
-        deliveryDate: parsedDeliveryDate,
+        deliveryDate: new Date(deliveryDate),
         items: { create: orderItems },
       },
     });
@@ -107,9 +102,6 @@ export async function POST(request: NextRequest) {
     );
   } catch (error) {
     console.error("Order creation error:", error);
-    return NextResponse.json(
-      { error: "Failed to create order", details: String(error) },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: "Failed to create order", details: String(error) }, { status: 500 });
   }
 }
